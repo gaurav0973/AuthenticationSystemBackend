@@ -2,17 +2,11 @@ import express from "express"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import cors from "cors"
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
 import connectDB from "./db/index.js"
 import userRoute from "./routes/user.routes.js"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
-dotenv.config({
-    path: join(__dirname, '../.env')
-})
+dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -32,7 +26,7 @@ app.use(cors({
 
 // routes
 app.get('/', (req, res) => res.send('Hello World!'))
-app.use("/api/v1/users", userRoute)
+app.use("/api/v1/users", userRoute);
 
 
 connectDB()
